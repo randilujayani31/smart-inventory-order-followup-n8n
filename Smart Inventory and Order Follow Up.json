@@ -1,0 +1,816 @@
+{
+  "name": "Smart Inventory and Order Follow Up",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "0edbfe68-8216-49f0-bb3a-0f3f08f44a4d",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        500
+      ],
+      "id": "10ae7977-798f-4bac-b711-58c847bdbfe5",
+      "name": "Starter Button",
+      "webhookId": "0edbfe68-8216-49f0-bb3a-0f3f08f44a4d"
+    },
+    {
+      "parameters": {
+        "url": "szxdcfgvhjkl",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        220,
+        500
+      ],
+      "id": "41a1b88e-625d-4afb-a206-65c397599727",
+      "name": "Fetch Data"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4.1-MINI"
+        },
+        "messages": {
+          "values": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        440,
+        500
+      ],
+      "id": "5b574957-48e1-47ac-bc66-b64053f2bab6",
+      "name": "Classify Data",
+      "credentials": {
+        "openAiApi": {
+          "id": "wSBvgQyOHLqqoZpV",
+          "name": "n8n free OpenAI API credits"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        800,
+        500
+      ],
+      "id": "a5716142-36ce-488d-bd6a-b0abb60d61f0",
+      "name": "Arrange Data"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1ln3QsPbujsdZst-KTsC5xWWZoL4_4wQWPy2ff2socSU",
+          "mode": "list",
+          "cachedResultName": "ranu",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ln3QsPbujsdZst-KTsC5xWWZoL4_4wQWPy2ff2socSU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ln3QsPbujsdZst-KTsC5xWWZoL4_4wQWPy2ff2socSU/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Client Name",
+              "displayName": "Client Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Praposal Link",
+              "displayName": "Praposal Link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Sent Date",
+              "displayName": "Sent Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        1090,
+        0
+      ],
+      "id": "6d9c6be3-277f-4372-94c3-c76a200cb6e1",
+      "name": "Create Database",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "TH5g57cTlWxIrCvq",
+          "name": "Google Sheets account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1ln3QsPbujsdZst-KTsC5xWWZoL4_4wQWPy2ff2socSU",
+          "mode": "list",
+          "cachedResultName": "ranu",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ln3QsPbujsdZst-KTsC5xWWZoL4_4wQWPy2ff2socSU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ln3QsPbujsdZst-KTsC5xWWZoL4_4wQWPy2ff2socSU/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        1450,
+        0
+      ],
+      "id": "9c88f3eb-f344-44d9-882e-8234b0d0e5a0",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "TH5g57cTlWxIrCvq",
+          "name": "Google Sheets account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1740,
+        0
+      ],
+      "id": "7c972d62-b3f9-404d-a1ac-a0d3c4b6a2aa",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        1960,
+        0
+      ],
+      "id": "f8ea7797-4701-4b4d-a5ba-c39435d460e4",
+      "name": "Display Data"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4.1-MINI"
+        },
+        "messages": {
+          "values": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        1020,
+        700
+      ],
+      "id": "6001a173-ce7d-4fe4-8a7b-4dfa7f4ef70a",
+      "name": "Stocks/Clients",
+      "credentials": {
+        "openAiApi": {
+          "id": "wSBvgQyOHLqqoZpV",
+          "name": "n8n free OpenAI API credits"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4.1-MINI"
+        },
+        "messages": {
+          "values": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        1380,
+        400
+      ],
+      "id": "d6b48745-b540-4185-b91f-84525f25d64f",
+      "name": "Calculations",
+      "credentials": {
+        "openAiApi": {
+          "id": "wSBvgQyOHLqqoZpV",
+          "name": "n8n free OpenAI API credits"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "7e9c22f6-70e2-4257-8cce-ba48d773e2ff"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "57d248f1-fa23-49be-adce-7b19c21d9a28",
+                    "leftValue": "",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "e334fb50-25ef-4d0f-8e0c-89cea336683c",
+                    "leftValue": "",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        1740,
+        400
+      ],
+      "id": "5baa86c1-2422-4a8e-b3f3-faa91fa6ff5b",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "sendTo": "xdcfvghbnjkm",
+        "subject": "dfghjk",
+        "message": "dxcfvgbhnjm",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1960,
+        200
+      ],
+      "id": "527c3ca5-6683-4469-a288-97618a7b9276",
+      "name": "Completed reply",
+      "webhookId": "616dda81-4490-4d0c-b259-8ca2410f0a83",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "t4kTRCANk54HMaqk",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "fghjk",
+        "subject": "xcvbnm",
+        "message": "cfvgbhnjmk",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1960,
+        400
+      ],
+      "id": "53f6608a-3be6-46dc-b0cb-f064834da76e",
+      "name": "Reqiuires",
+      "webhookId": "d4759342-20b8-4b5f-b58b-75a0c8a81de3",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "t4kTRCANk54HMaqk",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "sdfghj",
+        "subject": "xcfvgbhnj",
+        "message": "dxcfvgbhnj",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1960,
+        600
+      ],
+      "id": "3f7a65c5-84d2-4c0a-b932-26a8cd7b1e30",
+      "name": "Immediate Stocks",
+      "webhookId": "0c5acb03-99de-4ad0-9b0e-9cf7e6b4ebac",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "t4kTRCANk54HMaqk",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4.1-MINI"
+        },
+        "messages": {
+          "values": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        1380,
+        1000
+      ],
+      "id": "74d833df-dca9-4ac6-9b83-d53d981f5dff",
+      "name": "Message a model",
+      "credentials": {
+        "openAiApi": {
+          "id": "wSBvgQyOHLqqoZpV",
+          "name": "n8n free OpenAI API credits"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "97b863f7-3d81-4458-99e0-31a1e020d098"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "dde5c7ca-a8ff-49c7-a524-61eaf7713400",
+                    "leftValue": "",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "bd09f033-fd53-4198-8a86-e47eb8b86beb",
+                    "leftValue": "",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        1740,
+        1000
+      ],
+      "id": "56913f73-6490-4855-9006-2cf8aaef3de7",
+      "name": "Switch1"
+    },
+    {
+      "parameters": {
+        "sendTo": "xcfgvhj",
+        "subject": "dxfghjkl",
+        "message": "dxcfvgbhnjmkl",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1960,
+        800
+      ],
+      "id": "84d5dd16-a9c3-4bb7-999f-8c083cb66666",
+      "name": "Completed Invoices",
+      "webhookId": "0fff582e-70da-48d5-ac14-49304ebb54fc",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "t4kTRCANk54HMaqk",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "szxdcfvghb",
+        "subject": "xcfvgbhnj",
+        "message": "cfvgbhnjmk",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1960,
+        1000
+      ],
+      "id": "cda5dc69-eb6d-44db-8025-e6cc6f291f01",
+      "name": "Required  Invoices",
+      "webhookId": "389544c7-fe57-472d-a4c8-80a8a881fc81",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "t4kTRCANk54HMaqk",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "cfvgbhnj",
+        "subject": "dcfvgbhnj",
+        "message": "dxfcgvhjk",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1960,
+        1200
+      ],
+      "id": "fd0cb442-c6ce-4dc8-afe0-0ae83e709989",
+      "name": "Immediate Invoices",
+      "webhookId": "a04a5f1d-d045-4c6f-b87a-0838a9a5e20c",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "t4kTRCANk54HMaqk",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Starter Button": {
+      "main": [
+        [
+          {
+            "node": "Fetch Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Data": {
+      "main": [
+        [
+          {
+            "node": "Classify Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Classify Data": {
+      "main": [
+        [
+          {
+            "node": "Arrange Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Arrange Data": {
+      "main": [
+        [
+          {
+            "node": "Create Database",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Stocks/Clients",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Database": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Display Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Display Data": {
+      "main": [
+        []
+      ]
+    },
+    "Stocks/Clients": {
+      "main": [
+        [
+          {
+            "node": "Calculations",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculations": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Completed reply",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Reqiuires",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Immediate Stocks",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Immediate Stocks": {
+      "main": [
+        []
+      ]
+    },
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "Completed Invoices",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Required  Invoices",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Immediate Invoices",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "1ff6dd70-ee31-4265-bfe4-3d9d9f29649f",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "6fb3c27dca8e453e17a966237ad79ca34444387c1d8ab9cd9f471e5a343513c0"
+  },
+  "id": "8WUzhPdnOBbsDakl",
+  "tags": []
+}
